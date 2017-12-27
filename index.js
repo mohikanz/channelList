@@ -7,9 +7,20 @@ const token = process.env.SLACK_TOKEN;
 const web = new WebClient(token);
 
 // See: https://api.slack.com/methods/channels.list
+
+var fs = require('fs');
+var stream = fs.createWriteStream("channelList.md");
+stream.once('open', function(fd) {
+  stream.write("Name  | Topic | Persons\n");
+  stream.write("----- | ----- | -------\n");
+
 web.channels.list()
   .then((res) => {
     // `res` contains information about the channels
-    res.channels.forEach(c => console.log(c.name));
+    for(i=0;i<res.channels.length;i++){
+      stream.write("[#" + res.channels[i].name + "](https://mohikanz.slack.com/messages/" + res.channels[i].name + ") |" + res.channels[i].topic.value + " | " + res.channels[i].num_members + "\n");
+    }
+    stream.end();
   })
   .catch(console.error);
+});
