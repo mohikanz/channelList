@@ -17,8 +17,8 @@ stream.once('open', function(fd) {
 web.channels.list()
   .then((res) => {
     // `res` contains information about the channels
-    for(i=0;i<res.channels.length;i++){
-      stream.write("[#" + res.channels[i].name + "](https://mohikanz.slack.com/messages/" + res.channels[i].name + ") |" + res.channels[i].topic.value + " | " + res.channels[i].num_members + "\n");
+    for (let channel of res.channels) {
+      stream.write("[#" + channel.name + "](https://mohikanz.slack.com/messages/" + channel.name + ") |" + channel.topic.value + " | " + channel.num_members + "\n");
     }
     stream.end();
   })
