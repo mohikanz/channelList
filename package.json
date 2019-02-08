@@ -1,6 +1,6 @@
 {
   "name": "channellist",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "channel list",
   "repository": {
     "type": "git",
@@ -13,8 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@slack/client": "^3.15.0",
-    "dotenv": "^4.0.0",
-    "gists": "^1.0.0"
+    "@slack/client": "^4.8.0",
+    "gists": "^2.0.0"
   }
 }
